@@ -1,0 +1,333 @@
+---
+title: | 
+    | Notes on "Addressing Non-sincere Responses in Rank-Order Survey Questions"
+    | (Atsusaka & Kim, 2023)
+    | AU WiP
+header-includes:
+  - \usepackage{datetime}
+  - \usepackage{natbib}
+  - \usepackage{amsmath}
+  - \usepackage{pifont}
+  - \usepackage{wasysym}
+  - \usepackage{color}
+date: 2023-02-24\newline
+      \newline
+      $^1$American University\newline
+author: 
+  - Ryan T. Moore$^{1}$ 
+output:
+  beamer_presentation:
+    slide_level: 2
+    toc: true
+    fonttheme: serif
+    # includes:
+    #   in_header: zzz_beamer_header.tex
+  pdf_document:
+    fig_caption: true
+    number_sections: true
+    urlcolor: blue
+link-citations: yes 
+bibliography: "../Documents/Dropbox/research/computing/bib/main.bib"
+---
+
+<!-- \setbeamertemplate{footline}[page number] -->
+<!-- \newcommand{\begincols}[1]{\begin{columns}{#1}}  -->
+<!-- \newcommand{\stopcols}{\end{columns}} -->
+<!-- \usepackage[normalem]{ulem} -->
+\newcommand{\independent}{\perp\mkern-9.5mu\perp}
+
+
+```{r knitr options, echo=FALSE, warning=FALSE}
+# Encoding required for proper knitr rendering
+options(encoding = "native.enc")
+```
+
+```{r enviro, warning = FALSE, results = 'hide', echo = FALSE, message = FALSE}
+# Load packages:
+library(dplyr)
+library(ggplot2)
+library(png)
+library(grid)
+library(gridExtra)
+library(modelr)
+library(readr)
+library(tibble)
+library(tidyr)
+```
+
+
+# Big Picture
+
+## Framing the Paper, Big Questions
+
+\large
+
+@atskim23
+
+To what degree \ldots
+
+>- is paper about _ranking_ specifically?
+>    - (especially, item randomization)
+>- is paper about attraction to _geometric or numeric patterns_ specifically?
+>- should paper address other sources of non-sincerity?
+>    - (strategy, indifference, ignorance, social desirability, \ldots)
+>- should paper draw on insights/connections to other literatures?
+>    - (missing data, sensitive items, conjoints, vignettes, doubly-robust methods)
+
+\pause 
+
+(Some of this for \S1, some for \S9, some for body)
+
+
+## Sincerity
+
+\large
+
+What is _non-sincerity_?
+
+\pause 
+
+"responses that do not reflect people’s underlying preferences and are instead based on some patterns"
+
+\pause 
+
+"a non-sincere ranking, which can be anything but has no substantive meaning"
+
+\pause 
+
+>- Attraction to geometric patterns on response interface
+>- Clarify "what patterns?"
+>- Other question types (battery of Likerts, Approve/Disapproves, \ldots)
+
+## Sincerity
+
+\large
+
+What could _non-sincerity_ be masking?
+
+>- Strategic behavior
+>    - (Will never rank my 2nd choice "2", since 3rd is no threat)
+>- Systematic measurement error
+>    - (Survey social desirability $\rightsquigarrow$ I "should" rank $C$ last \ldots)
+>- Indifference 
+>    - (Completeness and transitivity are assumed!)
+>- Satisficing/Response to cognitive challenge
+>    - (Completeness and transitivity are assumed!)
+>- Dependence on alternatives ($ABC$, but $ADCB$)
+>    - (Completeness and transitivity are assumed!)
+
+
+# Connections
+
+## Connection 1: Missing Data
+
+\large
+
+What is role of independence assumption? 
+
+\setcounter{equation}{5}
+\begin{eqnarray}
+\pi_{i,s} \independent z_i & \text{ such that } &\mathbb{P}(\pi_{i,s} | z_i = 1) = \mathbb{P}(\pi_{i,s})
+\end{eqnarray}
+
+\pause 
+
+In missing data, 
+
+>- assume MCAR and life is easy  
+(listwise deletion inefficient but unbiased)
+>- assume the typical, realistic MAR or NI, and need more  
+(multiple imputation)
+
+## Connection 2: List Experiments for Sensitive Items
+
+\large
+
+What is role of independence assumption? 
+
+\setcounter{equation}{5}
+\begin{eqnarray}
+\pi_{i,s} \independent z_i & \text{ such that } &\mathbb{P}(\pi_{i,s} | z_i = 1) = \mathbb{P}(\pi_{i,s})
+\end{eqnarray}
+\pause 
+
+In sensitive items, whole point is *value* influences revelation
+
+\pause 
+
+How is your bias different from sensitive-item bias? 
+
+>- You posit different psych source, but clarify this
+>- Are list experiments (e.g.) just _pre-processing_?
+>- (No, since applies to all respondents?)
+>- (What is and is not _pre-processing_?)
+
+## Connection 3: Conjoints
+
+\large
+
+Forced-choice conjoint designs are simple rankings.
+
+\pause 
+
+>- What assumptions, results can you import from conjoints?
+>- Do your results inform conjoints?
+>- Why don't conjoints randomize attribute order?
+>    - Cognitive load
+
+## Connection 4: Doubly-Robust Models
+
+\large
+
+\begin{eqnarray*}
+\pi_i & \equiv & \pi_{i,s} z_i + \pi_{i,n} (1 - z_i) \qquad \qquad \qquad \qquad \qquad (2) \\
+\mathbb{P}(\pi_{i,s} | z_i = 1) & = & \frac{\mathbb{P}(\pi_i) - (1 - Pr(z_i = 1)) \mathbb{P}(\pi_{i,n} | z_i = 0)}{Pr(z_i = 1)} \quad (4)
+\end{eqnarray*}
+
+\pause 
+
+Beyond non-parametrics:
+
+Model for response/ranking $+$ Model for sincerity
+
+- @glyqui10 
+- @tylgriwes22
+
+## Connection 5: Anchoring Vignettes
+
+\large
+
+>- Surprising not to see connection to _anchoring vignettes_
+>    - "Best est" $=f($ "Anchoring Qs" + "Correct w/ Anchors"$)$
+>    - Several anchor Qs $\rightarrow$ one key response
+>- "All interpret anchor same" $\approx$ "vignette equivalence"
+
+\pause 
+
+\vspace{5mm}
+
+- @kinmursal04 
+- @hopkin10
+
+# Anchor Questions
+
+## Anchor Questions
+
+\large
+
+What is an anchor question?  
+
+- Deepen relationship betw'n **anchor** and **target** questions
+
+\pause 
+
+> "any respondent with minimal substantial knowledge can provide a correct ranking for the anchor question, irrespective of the heterogeneous underlying preferences"
+
+\pause 
+
+>- Develop this, to ensure it's plausible, not circular
+>- How does this differ from an objective "attention check" like "president is state-level office-holder"?
+
+
+## Anchor Questions
+
+\large
+
+Deepen relationship betw'n **anchor** and **target** questions
+
+\pause 
+
+Demonstrate
+
+>- match between anchor and target works
+>- match between anchor and target is required
+>    - (Must I double survey length?)
+
+
+## Anchor Questions
+
+\large
+
+>- Assumption 1: Target and anchor have same $Pr(\cdot)$ sincerity
+>    - Strong?
+>    - Factual vs. preference questions?
+>- Assumption 2: there is only 1 insincerity
+>    - Will capture a single constant geometry, but not sensitivity, ignorance, indifference, \ldots
+
+\pause 
+
+\vspace{3mm}
+
+(Under assumptions, nice correction for "some get it right by chance" using item-order-randomization. But assumptions preclude anyone getting it wrong for any other reason.)
+
+## Anchor Questions
+
+Item-order randomization to estimate prop sincere
+
+\footnotesize
+\setcounter{equation}{8}
+\begin{eqnarray}
+\widehat{\text{Pr}}(z_i^{\text{anc}} = 1) & = & \left[ \frac{\sum_{i = 1}^N c_i}{N} - \frac{1}{J!} \right] \left(1 - \frac{1}{J!} \right)^{-1}
+\end{eqnarray}
+
+\pause 
+
+\normalsize
+>- Adjust for item-order imbalance? (confounds via primacy)
+>- Unbiased, but does (9) do weird things? 
+>    - no, if everyone gets it: $$\left(\frac{120}{120} - \frac{1}{6}\right)\left(1-\frac{1}{6}\right)^{-1} = 1$$
+>    - no, if balance in anchor orders, etc: 
+$$\left(\frac{20}{120} - \frac{1}{6}\right)\left(1-\frac{1}{6}\right)^{-1} = 0$$
+>    - **yes**, if worse than that. E.g., everyone is wrong: 
+$$\left(\frac{0}{120} - \frac{1}{6}\right)\left(1-\frac{1}{6}\right)^{-1} = -0.2$$
+
+
+# Suggestions
+
+## Suggestions
+
+\large 
+
+- \S5
+    - Validate that nominal bootstrap coverage is correct
+    - Bootstrap vs. inverting the RI-permutation test?
+- \S8
+    - What do I want to see? Not just with/without correction, but also examination of quality of correction (test multiple anchors, other assumptions)
+
+
+## Small Suggestions
+
+- \S1
+    - "Indeed, our survey data show that non-sincere responses are prevalent in rank-order questions regardless of their contexts" (p. 1)
+    - If this refers to contextless response practice, it does not follow. "regardless" $\neq$ "in absence of".
+- \S4.3 \smiley 
+    - Add "No difference between sincere/insincere distributions"
+- \S5
+   - Can you test anchor questions to estimate how easy they are? (E.g., in a big class, with incentives for correctness to set an upper bound)
+   - "and re-designing": what do you have in mind?
+
+## Small Suggestions
+
+- \S6
+    - Show us table of three $\chi^2$ tests
+- \S7
+    - If replicate this, add "Option 1" to reflect real task
+    - "we may expect respondents to uniformly choose a ranking pattern available in the $J!$ permutation space". Well, clearly not. Phrase as null hypothesis.
+    - Add respondent count  
+    (E.g., if $n = 100$, $J = 3$, then $p = 0.32$ !)
+
+
+
+
+```{r fig.height=6, echo=FALSE, eval=FALSE}
+img <- readPNG("three_pictures.png")
+grid.raster(img)
+```
+
+<!-- \center -->
+<!-- \includegraphics[width=3in]{figs/dot.pdf} -->
+
+## References {.allowframebreaks}
+
+\footnotesize
+

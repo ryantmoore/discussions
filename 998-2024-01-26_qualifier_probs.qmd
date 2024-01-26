@@ -9,8 +9,10 @@ format:
     fonttheme: serif
     section-titles: true
     table-of-contents: true
-    includes:
-      in_header: zzz_beamer_header.tex
+    include_in_header: 
+      - zzz_beamer_header.tex
+      - text: |
+          \usepackage{animate}
 bibliography: "../setup/paper/main.bib"
 ---
 
@@ -33,6 +35,8 @@ library(tidyverse)
 ~~"I prove democracy is not real"~~ $\rightsquigarrow$ \newline "I provide evidence consist with failure of representation"
 >- Under-contextualizing, conceptually  
 ~~Describe one result~~ $\rightsquigarrow$ \newline Your question is a case of a more general political phenomenon. Explain what your answer teaches us about that phenomenon.
+>- Claiming causality without causal identification  
+~~"The effect of X"~~, ~~"X increases Y"~~
 >- Book-reporting  
 ~~Literature review~~ $\rightsquigarrow$ 
 >    - Teach us enough to understand the frontier of knowledge
@@ -40,21 +44,20 @@ library(tidyverse)
 >    - Every paper must be related to the paper you are writing
 >- Organization  
 ~~"(Why is this here?)"~~ ~~"(How related to prior?)"~~
->- Abrupt hypotheses  
-~~"And now, after that lit review, here's H1"~~
 
 ## Content Problems
 
 >- Unclear connection betwn theoretical model, hypotheses  
 ~~Vague description of A, description of B, my Hyp1~~ $\rightsquigarrow$ "Under A, we should see X; under B, we should see Y. I argue for model C, which implies that we should see Z."
+>- Abrupt hypotheses  
+~~"And now, after that lit review, here's H1"~~
 >- Insufficient statistical interpretation  
 ~~"The coef is 0.2"~~ $\rightsquigarrow$
->    - "Pred prob turnout for median is 0.45; for Q3 is 0.53", 
+>    - "Pred prob turnout for median is 0.45; for Q3 is 0.53"
 >    - Take time to make graphics
 >    - Uncertainty, inference
->- Claiming causality without causal identification  
-~~"The effect of X"~~, ~~"X increases Y"~~
->- Insufficient detail about the case, data, methods, 
+>- Insufficient detail about the case, data, methods, etc.  
+~~History of India~~, ~~Assume we know India~~
 
 # Design Problems
 
@@ -66,7 +69,7 @@ library(tidyverse)
 ~~Cool data that can't answer question~~ $\rightsquigarrow$ \newline Data + Method that address exactly what you propose
 >- Accepting unacceptable limits  
 ~~"X is too hard"~~, ~~"Y not computationally feasible for me"~~, ~~"Z takes hours"~~, ~~"To know W, must visit archive"~~ $\rightsquigarrow$  
-**Get as close to bleeding edge as you can.**
+**Get as close to the bleeding edge as you can.**
 
 # Style Problems
 
@@ -101,6 +104,24 @@ There's a lot of good advice about writing academic papers. Heed it.
 >- These notes 
 >    - http://tinyurl.com/bddxyxjw
 >    - https://github.com/ryantmoore/discussions/blob/main/998-2024-01-26_qualifier_probs.pdf
+
+***
+
+\centering
+
+\Large
+
+There are many potential pitfalls \ldots
+
+\vspace{5mm}
+
+![](figs/998_pitfall.png){width=70%}
+
+\vspace{5mm}
+
+\pause
+
+but you will write a great paper!
 
 ## References {.allowframebreaks}
 

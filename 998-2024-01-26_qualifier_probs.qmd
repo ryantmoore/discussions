@@ -33,7 +33,7 @@ library(tidyverse)
 
 >- Overclaiming  
 ~~"I prove democracy is not real"~~ $\rightsquigarrow$ \newline "I provide evidence consist with failure of representation"
->- Under-contextualizing, conceptually  
+>- Underclaiming: under-contextualizing, conceptually  
 ~~Describe one result~~ $\rightsquigarrow$ \newline Your question is a case of a more general political phenomenon. Explain what your answer teaches us about that phenomenon.
 >- Claiming causality without causal identification  
 ~~"The effect of X"~~, ~~"X increases Y"~~

@@ -1,0 +1,259 @@
+---
+title: | 
+    | Blocking
+author: 
+  - name: Ryan T. Moore
+date: 2024-06-11
+date-format: iso
+execute: 
+  echo: true
+format: 
+  beamer:
+    fonttheme: serif
+    section-titles: true
+    includes:
+      in_header: zzz_beamer_header.tex
+    toc: true
+institute: 
+  - American University
+  - The Lab @ DC
+bibliography: "../setup/paper/main.bib"
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| results: false
+#| warning: false
+
+library(here)
+library(tidyverse)
+```
+
+# Why?
+
+## Why do we block?
+
+\large
+
+>- Covariate **balance** 
+>- Estimate **closer to truth** 
+>- Increased **efficiency** 
+>- Triply-robust estimates: block, randomize, adjust 
+>- Block-level effects  
+$\rightsquigarrow$ different actors interested in different effects
+>- Guidelines for limited/uncertain resources
+
+## Why Block: Balance
+
+Simulation study: 100 units, $X_1 \sim N(0,1)$, $X_2 \sim \text{Unif}(0,1)$, 
+$X_3 \sim \chi^2_2$; 1000 such experiments. Assg treatmnt in 3 ways.  
+
+\pause 
+\vspace{-6mm}
+
+<!-- \begin{center} -->
+<!-- figs/simBalBoxes -->
+<!-- \end{center} -->
+
+## Why Block: Efficiency
+
+\vspace{-5mm}
+<!-- \begin{center} -->
+<!-- figs/simTEs -->
+<!-- \end{center} -->
+
+## Blocking in Applications: Balance and Efficiency
+@moore12: Perry Preschool Experiment
+
+\large
+Left: QQ plot of balance (100 blocked vs. unblocked)  
+Right: Est TE under sharp null (100 blocked vs. unblocked)
+
+<!-- \begin{center} -->
+<!-- figs/repPerryBalQQarrests -->
+<!-- figs/repPerryTEarrestsReg -->
+<!-- \end{center} -->
+    
+(SES, sex, IQ)    
+
+    
+## Balance in Applications: Balance and Efficiency
+    
+\Large
+Considering more variables \ldots
+
+<!-- \begin{center}                -->
+<!-- figs/repPerryBalQQarrestsAll -->
+<!-- figs/repPerryTEarrestsAllReg -->
+<!-- \end{center} -->
+
+($+$ siblings, AFDC, mom empl, educ, father, \ldots)
+
+
+
+
+# How?
+
+## Blocking with `blockTools`
+
+Start with some sample data:
+
+```{r}
+library(blockTools)
+data(x100)
+
+x100 |> head()
+```
+
+[@moore12; @moosch23]
+
+## Blocking with `blockTools`
+
+```{r}
+b <- block(x100, id.vars = "id", 
+           block.vars = c("b1", "b2"))
+```
+
+```{r}
+bl <- b$blocks$`1`
+
+bl |> head()
+```
+
+## Blocking with `blockTools`
+
+Why all this?
+
+```{r}
+bl <- b$blocks$`1`
+```
+
+We are extracting just the blocked pairs themselves.
+
+- Why `b$blocks`? Since `b` has 3 components:
+```{r}
+names(b)
+```
+- Why `blocks$`1`? Since this is (default-named) first (and only) "group":
+```{r}
+names(b$blocks)
+```
+
+## Blocking with `blockTools`
+
+What else could we do?
+
+```{r}
+b_3groups_3conditions <- block(
+  x100,
+  groups = "g",                # (Factor variable in data)
+  n.tr = 3,
+  id.vars = "id",
+  block.vars = c("b1", "b2"),
+  distance = "mve"
+)
+```
+
+```{r}
+b_3groups_3conditions$blocks
+```
+
+
+## Blocking with `blockTools`
+
+Some rows from each "group": 
+
+```{r}
+rows_a <- b_3groups_3conditions$blocks$a |> slice(1:2) |> mutate(group = "a")
+rows_b <- b_3groups_3conditions$blocks$b |> slice(1:2) |> mutate(group = "b")
+rows_c <- b_3groups_3conditions$blocks$c |> slice(1:2) |> mutate(group = "c")
+bind_rows(rows_a, rows_b, rows_c)
+```
+
+## Blocking with `blockTools`
+
+Other arguments to `block()`
+
+- `vcov.data`
+- `groups`: for exact-blocks
+- `n.tr`
+- `id.vars`
+- `block.vars`
+- `algorithm`: `optGreedy`, `optimal`, `naiveGreedy`, `randGreedy`, `sortGreedy`
+- `distance`: `mahalanobis`, `mcd`, `mve`, `euclidean`, $k\times k$ matx
+- `weight`
+- `level.two`: block states by most similar cities
+- `valid.var`, `valid.range`: Goldilocks
+- `seed.dist`: (for `mcd` and `mve`)
+
+## Assign
+
+```{r}
+a <- assignment(b, seed = 71573706)
+a
+```
+
+## Assign
+
+```{r}
+a3 <- assignment(b_3groups_3conditions, seed = 979677744)
+a3
+```
+
+
+## Blocking with `randomizr::block_ra()`
+
+Material
+
+@coppock23
+
+# Then what?
+
+## `blockTools`: diagnose, get block IDs, check balance 
+
+\large 
+
+Diagnose: 
+```{r eval = FALSE, warning = FALSE}
+diagnose(a, data = x100, id.vars = "id", 
+         suspect.var = "b1", suspect.range = c(0, 5)) 
+```
+\pause 
+
+Get block IDs
+```{r eval = FALSE, warning = FALSE}
+createBlockIDs(a, data = x100, id.var = "id")
+```
+
+\pause 
+
+Get balance:
+```{r eval = FALSE, warning = FALSE}
+assg2xBalance(a, x100, id.var = "id", 
+              bal.vars = c("b1", "b2"))
+```
+
+***
+
+\huge
+
+\begin{center}
+Thanks! 
+\end{center}
+
+\vspace{5mm}
+
+\large
+
+\center 
+`rtm@american.edu`  
+`www.ryantmoore.org`  
+
+\quad
+
+## References {.allowframebreaks}
+
+\footnotesize
+

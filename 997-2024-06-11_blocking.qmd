@@ -53,16 +53,12 @@ $X_3 \sim \chi^2_2$; 1000 such experiments. Assg treatmnt in 3 ways.
 \pause 
 \vspace{-6mm}
 
-<!-- \begin{center} -->
-<!-- figs/simBalBoxes -->
-<!-- \end{center} -->
+![](figs/997_simBalBoxes.pdf)
 
 ## Why Block: Efficiency
 
 \vspace{-5mm}
-<!-- \begin{center} -->
-<!-- figs/simTEs -->
-<!-- \end{center} -->
+![](figs/997_simTEs.pdf)
 
 ## Blocking in Applications: Balance and Efficiency
 @moore12: Perry Preschool Experiment
@@ -71,10 +67,8 @@ $X_3 \sim \chi^2_2$; 1000 such experiments. Assg treatmnt in 3 ways.
 Left: QQ plot of balance (100 blocked vs. unblocked)  
 Right: Est TE under sharp null (100 blocked vs. unblocked)
 
-<!-- \begin{center} -->
-<!-- figs/repPerryBalQQarrests -->
-<!-- figs/repPerryTEarrestsReg -->
-<!-- \end{center} -->
+![](figs/997_repPerryBalQQarrests.pdf)
+![](figs/997_repPerryTEarrestsReg.pdf)
     
 (SES, sex, IQ)    
 
@@ -84,10 +78,8 @@ Right: Est TE under sharp null (100 blocked vs. unblocked)
 \Large
 Considering more variables \ldots
 
-<!-- \begin{center}                -->
-<!-- figs/repPerryBalQQarrestsAll -->
-<!-- figs/repPerryTEarrestsAllReg -->
-<!-- \end{center} -->
+![](figs/997_repPerryBalQQarrestsAll.pdf)
+![](figs/997_repPerryTEarrestsAllReg.pdf)
 
 ($+$ siblings, AFDC, mom empl, educ, father, \ldots)
 

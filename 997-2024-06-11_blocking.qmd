@@ -91,10 +91,7 @@ Considering more variables \ldots
 
 ($+$ siblings, AFDC, mom empl, educ, father, \ldots)
 
-
-
-
-# How?
+# How: `blockTools`
 
 ## Blocking with `blockTools`
 
@@ -165,6 +162,7 @@ b_3groups_3conditions$blocks
 
 Some rows from each "group": 
 
+\small
 ```{r}
 rows_a <- b_3groups_3conditions$blocks$a |> slice(1:2) |> mutate(group = "a")
 rows_b <- b_3groups_3conditions$blocks$b |> slice(1:2) |> mutate(group = "b")
@@ -194,18 +192,37 @@ Other arguments to `block()`
 a <- assignment(b, seed = 71573706)
 a
 ```
+## Get Assignments
 
-## Assign
+```{r}
+a |> extract_conditions(x100, id.var = "id")
+```
+
+```{r}
+x100 |> mutate(
+  condition = extract_conditions(a, x100, id.var = "id"))
+```
+
+## Assign 3 Conditions, within Groups
 
 ```{r}
 a3 <- assignment(b_3groups_3conditions, seed = 979677744)
 a3
 ```
 
+# How: `randomizr`
 
 ## Blocking with `randomizr::block_ra()`
 
-Material
+```{r}
+library(randomizr)
+
+tr <- block_ra(x100$g)
+
+# Better:
+
+x100 |> mutate(tr = block_ra(x100$g))
+```
 
 @coppock23
 
@@ -234,6 +251,29 @@ Get balance:
 assg2xBalance(a, x100, id.var = "id", 
               bal.vars = c("b1", "b2"))
 ```
+
+## Analysis
+
+\large
+
+>- Generally, use Lin or Blocked Diff-in-Means
+>- LSDV (block indicators) weights w/in block TE's by $$p_j (1 - p_j) n_j$$
+
+\pause 
+where 
+
+- $p_j= \text{share of block }j \text{ treated}$ 
+- $n_j= \text{size of block }j$
+- (I.e., $p_j(1-p_j)= \text{var}(TE)$ in block $j$)  
+
+## Analysis
+
+\large
+Can I just ignore blocks and pool? 
+
+\pause 
+
+- If $p_j$ varies, no
 
 ***
 

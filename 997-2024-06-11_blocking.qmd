@@ -263,6 +263,23 @@ where
 - $n_j= \text{size of block }j$
 - (I.e., $p_j(1-p_j)= \text{var}(TE)$ in block $j$)  
 
+\pause
+Safer when 
+
+- $p_j$ constant across blocks $j$
+- $n_j$ constant across blocks $j$
+
+## Analysis
+
+
+```{r}
+library(estimatr)
+
+df <- x100 |> mutate(tr = block_ra(x100$g))
+
+lm_lin(b1 ~ tr, covariates = ~ g, data = df)
+```
+
 ## Analysis
 
 \large

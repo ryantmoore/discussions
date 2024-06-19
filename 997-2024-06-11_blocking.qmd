@@ -11,8 +11,6 @@ format:
   beamer:
     fonttheme: serif
     section-titles: true
-    includes:
-      in_header: zzz_beamer_header.tex
     toc: true
 institute: 
   - American University
@@ -30,6 +28,419 @@ bibliography: "../setup/paper/main.bib"
 library(here)
 library(tidyverse)
 ```
+
+# What?
+
+
+## Motivation: A Causal Inference Question
+
+\Large
+"Would a canvassing policy increase enrollment in a health insurance program?"
+
+\pause 
+\vspace{3mm}
+
+| Precinct | Party | Canvass? | Enroll %  |
+|:--:|:--:|:--:|:--:|
+| 1 | Dem | | | 
+| 2 | Dem | | |
+| 3 | Rep | | |
+| 4 | Rep | | |  
+
+
+## Motivation: A Causal Inference Question
+
+\large
+
+Suppose we observationally measure
+
+\vspace{5mm}
+
+\begin{center}
+\begin{tabular}{cccc}
+Precinct & Party & Canvass? & Enroll \% \\ \hline
+1 & Dem & Yes & 60 \\
+2 & Dem & Yes & 70 \\
+3 & Rep & No & 20 \\
+4 & Rep & No & 30 \\ \hline
+&& Diff in Means: & 40 \\
+&& (Yes $-$ No) &
+\end{tabular}
+\end{center}
+
+<!-- | Precinct | Party | Canvass? | Enroll %  | -->
+<!-- |:--:|:--:|:--:|:--:| -->
+<!-- | 1 | Dem | Yes | 60 | -->
+<!-- | 2 | Dem | Yes | 70 |  -->
+<!-- | 3 | Rep | No | 20 |  -->
+<!-- | 4 | Rep | No | 30 | \\hline  -->
+<!-- |  |  | Diff in Means | 40 |  -->
+<!-- |  |  | (Yes $-$ No) |  |  -->
+
+\pause 
+
+Causal claims? Concerns?
+
+
+## Motivation: A Causal Inference Question
+
+\large
+
+Suppose we \alert{randomly assign} 2 Tr, 2 Co, and measure
+
+\vspace{5mm}
+
+\begin{center}
+\begin{tabular}{cccc}
+Precinct & Party & Canvass? & Enroll \%  \\ \hline
+1 & Dem & Yes & 60 \\
+2 & Dem & Yes & 70 \\
+3 & Rep & No & 20 \\
+4 & Rep & No & 30 \\ \hline
+&& Diff in Means: & $40$ \\
+&& (Yes $-$ No) &
+\end{tabular}
+\end{center}
+
+\pause 
+
+Causal claims? Concerns?
+
+***
+
+\large
+
+We knew: do better than draw 
+
+$$T_i \sim \text{Bern}(\pi)$$ 
+
+\pause
+
+>- $\rightsquigarrow$ sample imbalance
+>- Might get no treateds!
+
+\pause 
+
+Seriously?  \pause Well, \ldots
+
+\pause 
+
+<!-- \vspace{-30mm} -->
+
+![Unlucky](figs/997_unlucky.png)
+
+***
+
+\large
+
+We knew: do better than draw 
+
+$$T_i \sim \text{Bern}(\pi)$$ 
+
+- $\rightsquigarrow$ sample imbalance
+- Might get no treateds!
+- CLT SE for diff in means:
+
+\pause 
+
+\footnotesize
+
+$$SE(\widehat{ATE}) = \sqrt{\frac{1}{N-1} \left[ \frac{m \mathrm{Var}(Y_i(0))}{N-m} + \frac{(N-m)\mathrm{Var}(Y_i(1))}{m} +
+2\mathrm{Cov}(Y_i(0), Y_i(1)) \right]}$$
+
+\large
+
+- If $\mathrm{Var}(Y_i(0)) = \mathrm{Var}(Y_i(1))$, allocate units equally.  \pause
+Say 5 treated, 4 control.  What to do with 10th village? \pause
+	\begin{itemize}
+		\item $10^{th} \to$ control: $SE: \sqrt{\frac{5}{5} + \frac{5}{5}} = \sqrt{2}$  \pause
+		\item $10^{th} \to$ treated: $SE: \sqrt{\frac{6}{4} + \frac{4}{6}} = \sqrt{2.66}$
+	\end{itemize} \pause
+- If $\mathrm{Var}(Y_i(0)) \neq \mathrm{Var}(Y_i(1))$, allocate $\to$ higher-Variance condition
+
+***
+
+\footnotesize
+
+$$SE(\widehat{ATE}) = \sqrt{\frac{1}{N-1} \left[ \frac{m \mathrm{Var}(Y_i(0))}{N-m} + \frac{(N-m)\mathrm{Var}(Y_i(1))}{m} +
+2\mathrm{Cov}(Y_i(0), Y_i(1)) \right]}$$
+
+\large
+
+- If $\mathrm{Cov}(Y_i(0), Y_i(1)) > 0$, larger SE, less precision
+- If $\mathrm{Cov}(Y_i(0), Y_i(1)) < 0$, smaller SE, _more_ precision
+
+\pause 
+
+Demonstration:
+
+\begin{center}
+\begin{tabular}{cccc}
+Unit & $Y_0$ & $Y_1$ ($+$ cov) & $Y_1$ ($-$ cov)  \\ \hline
+1 & 0 & 0 & 10 \\
+2 & 5 & 5 & 5 \\
+3 & 10 & 10 & 0 \\ \hline
+Means & 5 & 5 & 5 \\
+\end{tabular}
+\end{center}
+
+\pause 
+Suppose assign 1 to Tr, 2 to Co.  
+\pause $\widehat{ATE}_{+ \textrm{cov}} = -7.5, 0, 7.5$  
+\pause $\widehat{ATE}_{- \textrm{cov}} = 2.5, 0, -2.5$ \pause (less variance!)
+
+
+
+## Example: Canvassing and Enrollment
+
+\large
+
+But, is obs difference causal? 
+
+\pause
+\vspace{5mm}
+
+What do we really want to know?
+
+\pause
+\vspace{5mm}
+
+Does canvassing actually _change_ enrollment in precinct?  
+(Or, just Party $\to$ Enrollment?)
+
+\pause
+\vspace{5mm}
+
+What _would have_ happened to "No" precincts if "Yes"?  
+
+\pause
+\vspace{5mm}
+
+What would have happened under _other_ conditions?
+
+
+## Example: Canvassing and Enrollment
+
+\Large
+Suppose we can know both _potential outcomes_ \ldots
+
+\vspace{5mm}
+
+\large
+
+\begin{center}
+\begin{tabular}{ccccc}
+&&& Enroll \% & Enroll \% \\
+Precinct & Party & Canvass? & if No Canvass & if Canvass   \\ \hline
+1 & Dem & $\_$ & 20 & 60 \\
+2 & Dem & $\_$ & 30 & 70 \\
+3 & Rep & $\_$ & 20 & 30 \\
+4 & Rep & $\_$ & 30 & 40 \\ \hline
+&& Means: & 25 & 50 \\
+\end{tabular}
+\end{center}
+\pause
+
+\Large
+$\text{ATE} = 50-25=25$
+
+\pause
+
+(True or an estimate?)
+
+
+## Example: Canvassing and Enrollment
+
+\Large
+Another way to think about same information:
+
+\vspace{5mm}
+
+\small
+
+\begin{center}
+\begin{tabular}{cccccc}
+&&& Enroll \% & Enroll \% & \alert{True Precinct} \\
+Precinct & Party & Canvass? & if No Canvass & if Canvass & \alert{Effect}  \\ \hline
+1 & Dem & $\_$ & 20 & 60 & \alert{40}\\
+2 & Dem & $\_$ & 30 & 70 & \alert{40} \\
+3 & Rep & $\_$ & 20 & 30 & \alert{10} \\
+4 & Rep & $\_$ & 30 & 40 & \alert{10}\\ \hline
+&& Means: & 25 & 50 & \alert{25}\\
+\end{tabular}
+\end{center}
+
+\vspace{5mm}
+
+\Large 
+$\text{ATE} = (40 + 40 + 10 + 10)/4 = 25$
+
+
+## The ``Fundamental Problem of Causal Inference''
+
+\large
+
+We can't observe both "Canvassed" and "Not Canvassed" for a precinct.
+
+\vspace{10mm}
+
+We can't observe both _potential outcomes_ (_counterfactuals_). 
+
+\vspace{10mm}
+So, how can we get a good causal estimate?
+
+
+## Example: Canvassing and Enrollment
+
+\large
+Suppose we observe \ldots
+
+\vspace{5mm}
+
+\begin{center}
+\begin{tabular}{ccccc}
+&&& Enroll \% & Enroll \% \\
+Precinct & Party & Canvass? & if No Canvass & if Canvass   \\ \hline
+1 & Dem & Yes &  & 60 \\
+2 & Dem & Yes &  & 70 \\
+3 & Rep & No & 20 &   \\
+4 & Rep & No & 30 &  \\ \hline
+&& Means: & 25 & 65 \\
+\end{tabular}
+\end{center}
+
+\vspace{5mm}
+
+$\text{Estimated ATE} = 65-25 = 40$  \pause 
+<!-- $\quad$ \frownie -->
+$\quad$ (too big)
+
+
+
+## Example: Canvassing and Enrollment
+
+\large
+Or, we could have observed \ldots
+
+\pause 
+\vspace{5mm}
+
+\begin{center}
+\begin{tabular}{ccccc}
+&&& Enroll \% & Enroll \% \\
+Precinct & Party & Canvass? & if No Canvass & if Canvass   \\ \hline
+1 & Dem & Yes &  & 60 \\
+2 & Dem & No & 30 &  \\
+3 & Rep & Yes &  & 30   \\
+4 & Rep & No & 30 &  \\ \hline
+&& Means: & 30 & 45 \\
+\end{tabular}
+\end{center}
+
+\vspace{5mm}
+
+$\text{Estimated ATE} = 45-30 = 15$ \pause 
+<!-- $\quad$ \frownie  -->
+$\quad$ (too small; closer)
+
+
+## Example: Canvassing and Enrollment
+
+\Large
+In our random allocation, possible data were
+
+\begin{center}
+\begin{tabular}{cc}
+Assignments & Est ATE \\ \hline
+YYNN & 40  \\ \pause
+NYNY & 35 \\
+YNNY & 25 \\
+NYYN & 25 \\
+YNYN & 15 \\
+NNYY & 10
+\end{tabular}
+\end{center}
+
+\pause
+
+>- Some closer to truth
+>- $E(\widehat{\bar{\tau}}) = \frac{1}{6}\cdot 40 + \frac{1}{6}\cdot 35 + \frac{1}{3}\cdot 25 + \frac{1}{6}\cdot 15 + \frac{1}{6}\cdot 10 = 25 = \bar{\tau}$  \pause
+(unbiased)
+
+
+## A Problem
+
+\large
+
+In practice, we don't know all potential outcomes.
+
+\pause
+
+Two assignments (YYNN and NNYY) leave treatment perfectly confounded with party. 
+
+\pause
+
+We can never see all of $Y_1$, $Y_0$. But we can see all of $X$!
+
+\pause
+
+Let's ensure $X$ does not predict $T$.
+
+
+## A Solution
+
+\large
+_Blocking_:
+
+\vspace{5mm}
+
+Creating pre-treatmnt groups that look same on _predictors_.   \pause
+
+\vspace{3mm}
+
+\begin{center}
+\begin{tabular}{ccccc}
+&&& Enroll \% & Enroll \% \\
+Precinct & Party & Canvass? & if No Canvass & if Canvass   \\ \hline
+1 & \color{blue}{Dem} & \only<4>{Y} &  & \only<4>{60} \\
+2 & {\color{blue}Dem} & \only<4>{N} & \only<4>{30} &  \\
+3 & \color{red}{Rep} & \only<4>{N} & \only<4>{20} &    \\
+4 & \color{red}{Rep} & \only<4>{Y} &  & \only<4>{40} \\ \hline
+\end{tabular}
+\end{center}
+\pause
+
+\vspace{3mm}
+
+(Then, randomize \alert{within} groups.)
+
+
+## Example: Canvassing and Enrollment
+
+\large
+Blocking restricts possible data to
+
+| Assignments | Est TE |
+|:------:|:------:|
+| \color{gray} YYNN | \color{gray} 40 |
+| **NYNY** | **35** |
+| **YNNY** | **25** |
+| **NYYN** | **25** |
+| **YNYN** | **15** |
+| \color{gray} NNYY | \color{gray} 10 |
+
+\pause 
+
+Estimates have \alert{less variance}, are \alert{closer to true} ATE.  \pause
+
+Under random allocation, 5 possible estimates: 40, 15, 25, 35, 10. 
+Blocking \alert{restricts} to 3 best: 15, 25, 35.
+
+\pause
+
+<!-- \begin{center} -->
+<!-- \smiley -->
+<!-- \end{center} -->
 
 # Why?
 

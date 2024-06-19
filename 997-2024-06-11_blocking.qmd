@@ -10,6 +10,11 @@ execute:
 format: 
   beamer:
     fonttheme: serif
+    include-in-header: 
+      text: | 
+        \newcommand{\theHtable}{\thetable}
+        \usepackage{ulem}
+        \usepackage{wasysym}
     section-titles: true
     toc: true
 institute: 
@@ -30,7 +35,6 @@ library(tidyverse)
 ```
 
 # What?
-
 
 ## Motivation: A Causal Inference Question
 
@@ -124,8 +128,6 @@ $$T_i \sim \text{Bern}(\pi)$$
 Seriously?  \pause Well, \ldots
 
 \pause 
-
-<!-- \vspace{-30mm} -->
 
 ![Unlucky](figs/997_unlucky.png)
 
@@ -312,7 +314,7 @@ Precinct & Party & Canvass? & if No Canvass & if Canvass   \\ \hline
 \vspace{5mm}
 
 $\text{Estimated ATE} = 65-25 = 40$  \pause 
-<!-- $\quad$ \frownie -->
+$\quad$ \frownie
 $\quad$ (too big)
 
 
@@ -340,7 +342,7 @@ Precinct & Party & Canvass? & if No Canvass & if Canvass   \\ \hline
 \vspace{5mm}
 
 $\text{Estimated ATE} = 45-30 = 15$ \pause 
-<!-- $\quad$ \frownie  -->
+$\quad$ \frownie
 $\quad$ (too small; closer)
 
 
@@ -422,12 +424,12 @@ Blocking restricts possible data to
 
 | Assignments | Est TE |
 |:------:|:------:|
-| \color{gray} YYNN | \color{gray} 40 |
+| \color{gray} \sout{YYNN} | \color{gray} \sout{40} |
 | **NYNY** | **35** |
 | **YNNY** | **25** |
 | **NYYN** | **25** |
 | **YNYN** | **15** |
-| \color{gray} NNYY | \color{gray} 10 |
+| \color{gray} \sout{NNYY} | \color{gray} \sout{10} |
 
 \pause 
 
@@ -438,9 +440,9 @@ Blocking \alert{restricts} to 3 best: 15, 25, 35.
 
 \pause
 
-<!-- \begin{center} -->
-<!-- \smiley -->
-<!-- \end{center} -->
+\begin{center}
+\smiley
+\end{center}
 
 # Why?
 

@@ -1,0 +1,94 @@
+---
+title: | 
+    | Bringing Research Capacity In-House
+subtitle: Opportunities and Challenges for the Research-within-Government Model
+author: 
+  - name: Ryan T. Moore
+date: 2024-11-23
+date-format: iso
+execute: 
+  echo: true
+format: 
+  beamer:
+    fonttheme: serif
+    include-in-header: 
+      text: | 
+        \newcommand{\theHtable}{\thetable}
+        \usepackage{wasysym}
+    section-titles: true
+    toc: false
+institute: 
+  - American University
+  - The Lab @ DC
+  - Office of Evaluation Sciences
+bibliography: "../setup/paper/main.bib"
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| results: false
+#| warning: false
+
+library(here)
+library(tidyverse)
+```
+
+# Bringing Research Capacity In-House
+
+\Large
+
+\begin{center}
+Context
+\end{center}
+
+\pause
+Sessions on policy/admin research models:
+
+- Research through philanthropy
+- Research through contracts/firms
+- Research through academics  \pause
+- Research _through government_
+
+# Bringing Research Capacity In-House
+
+\LARGE
+
+- **Pim Welle**  
+_Chief Data Scientist_, Allegheny County (PA) Department of Human Services
+- **Alyssa Huberts**  
+_Social Scientist_, The Lab @ DC, Washington DC
+- **Sebastián Olascoaga**  
+_Evaluation and Research Lead_, Analytics Team, City of Boston (MA)
+
+<!-- ![](figs/997_simTEs.pdf){fig-align="center"} -->
+
+<!-- \includegraphics[width=2in]{figs/997_repPerryBalQQarrestsAll.pdf} -->
+
+
+
+***
+
+\huge
+
+\begin{center}
+Thanks! 
+\end{center}
+
+\vspace{5mm}
+
+\large
+
+\center 
+`Paul.Welle@alleghenycounty.us`
+`alyssa.huberts@dc.gov`
+`sebastian.olascoaga@gmail.com`
+
+\vspace{1cm}
+
+`rtm@american.edu`  
+`www.ryantmoore.org`  
+
+\quad
+

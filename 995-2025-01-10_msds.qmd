@@ -1,0 +1,162 @@
+---
+title: | 
+    | Welcome!
+    | MS in Data Science
+author: 
+  - name: Ryan T. Moore
+date: 2025-01-10
+date-format: iso
+execute: 
+  echo: true
+format: 
+  beamer:
+    fonttheme: serif
+    include-in-header: 
+      text: | 
+        \usepackage{wasysym}
+        \setbeamertemplate{footline}[page number]
+    section-titles: true
+    toc: false
+institute: 
+  - American University
+bibliography: "../setup/paper/main.bib"
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| results: false
+#| warning: false
+
+library(here)
+library(tidyverse)
+```
+
+***
+
+\LARGE
+
+>- Political methodologist  
+(Dept of Government, SPA)
+>- Assoc Director, Center for Data Science  
+(AU, SPA)
+>- Senior Social Scientist  
+(The Lab @ DC)
+>- Methods Fellow  
+(Office of Evaluation Sciences, US GSA)
+
+# Connections
+
+\LARGE
+
+>- Winter Institute in Data Science
+>- RAs with The Lab @ DC
+
+***
+
+\Huge
+
+\centering
+
+Data Science
+
+***
+
+\Huge
+Particular intersection of 
+
+- Statistical practice
+- Computational tools
+- Substantive knowledge
+
+
+***
+
+\LARGE
+
+>- Stats: prediction (vs. explanation), algorithms (vs. models)
+>- Computing: addressing problems with data _per se_ (size, tidy-ness, un/structure, replicability)
+>- Substance: social science
+
+
+# Goals
+
+\Large
+
+- Computational tools (R, Python, etc.)
+- Varied data experience, original work
+- Apply knowledge in academia, government, industry
+- Communicate understanding
+
+# Requirements
+
+\Large
+
+>- 10 courses / 30 credits
+>- Choose a track: Applied Public Affairs, Business Analytics, Computer Sci, Cybersecurity, 
+Environmental Sci, Finance, Int'l Economic Relations, Investigative Journalism, Microeconomic Analysis, Specialized Methods
+>- Catalog ('24-'25): https://tinyurl.com/mr3pt8pm  
+\footnotesize https://catalog.american.edu/preview_program.php?catoid=22&poid=10903
+
+# Courses
+
+\large
+
+- DATA-612: R
+- DATA-613: Data Science (modeling, Shiny, etc.)
+- STAT-615: Regression
+- STAT-627: Stat Machine Learning
+- One of
+  - GOVT/STAT-618: Bayes
+  - GOVT-650: Political Analysis
+- One of
+  - GOVT-653: Intro Quant Methods in Pol Sci
+  - STAT-614: Stat Methods
+- DATA-793: Capstone
+- Three more courses
+  - (Electives, depend on track)
+  - Substance or methods (computer vision, AI, ML, deep learning, 
+  NLP, survey sampling, \ldots)
+
+<!-- ![](figs/997_simTEs.pdf){fig-align="center"} -->
+
+<!-- \includegraphics[width=2in]{figs/997_repPerryBalQQarrestsAll.pdf} -->
+
+
+# Directors
+
+\Large
+
+- Jeff Gill: `jeffgill.org`
+- Betty Malloy: `malloy@american.edu`
+
+
+
+***
+
+\huge
+
+\begin{center}
+Questions?
+\end{center}
+
+***
+
+\huge
+
+\begin{center}
+Thanks! 
+\end{center}
+
+\vspace{5mm}
+
+\large
+
+\center 
+
+`rtm@american.edu`  
+`www.ryantmoore.org`  
+
+\quad
+

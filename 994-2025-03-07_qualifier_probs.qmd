@@ -1,0 +1,134 @@
+---
+title: | 
+    | Common Qualifier Paper Problems
+author: "Ryan T. Moore"
+date: 2025-03-07
+date-format: iso
+format: 
+  beamer:
+    fonttheme: serif
+    section-titles: true
+    table-of-contents: true
+    include_in_header: 
+      - zzz_beamer_header.tex
+      - text: |
+          \usepackage{animate}
+bibliography: "../setup/paper/main.bib"
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| results: false
+#| warning: false
+
+library(here)
+library(tidyverse)
+```
+
+# Content Problems
+
+## Content Problems
+
+>- Overclaiming  
+~~"I prove democracy is not real"~~ $\rightsquigarrow$ \newline "I provide evidence consist with failure of representation"
+>- Underclaiming: under-contextualizing, conceptually  
+~~Describe one result~~ $\rightsquigarrow$ \newline Your question is a case of a more general political phenomenon. Explain what your answer teaches us about that phenomenon.
+>- Claiming causality without causal identification  
+~~"The effect of X"~~, ~~"X increases Y"~~
+>- Book-reporting  
+~~Literature review~~ $\rightsquigarrow$ 
+>    - Teach us enough to understand the frontier of knowledge
+>    - Explain how you move that frontier
+>    - Every paper must be related to the paper you are writing
+>- Organization  
+~~"(Why is this here?)"~~ ~~"(How related to prior?)"~~
+
+## Content Problems
+
+>- Unclear connection betwn theoretical model, hypotheses  
+~~Vague description of A, description of B, my Hyp1~~ $\rightsquigarrow$ "Under A, we should see X; under B, we should see Y. I argue for model C, which implies that we should see Z."
+>- Abrupt hypotheses  
+~~"And now, after that lit review, here's H1"~~
+>- Insufficient statistical interpretation  
+~~"The coef is 0.2"~~ $\rightsquigarrow$
+>    - "Pred prob turnout for median is 0.45; for Q3 is 0.53"
+>    - Take time to make graphics
+>    - Uncertainty, inference
+>- Insufficient detail about the case, data, methods, etc.  
+~~History of India~~, ~~Assume we know India~~
+
+## Content Problems
+
+>- Ignoring counterarguments, alternative explanations  
+~~"I've shown you evidence consistent with my theory X"~~ $\rightsquigarrow$ "I've shown you evidence consistent with my theory X, but also inconsistent with Y and Z." Have _something_ to say; demonstrate that you've thought about the problem.
+
+
+# Design Problems
+
+## Design Problems
+
+>- Failing to recognize design's weaknesses  
+~~"Because coefficient is positive, X causes Y"~~ $\rightsquigarrow$ \newline design that enables answering Q you propose
+>- Failing to recognize data's limits  
+~~Cool data that can't answer question~~ $\rightsquigarrow$ \newline Data + Method that address exactly what you propose
+>- Accepting unacceptable limits  
+~~"X is too hard"~~, ~~"Y not computationally feasible for me"~~, ~~"Z takes hours"~~, ~~"To know W, must visit archive"~~ $\rightsquigarrow$  
+**Get as close to the bleeding edge as you can.**
+
+# Style Problems
+
+## Style Problems
+
+>- Claiming causality without causal identification  
+~~"The effect of X"~~, ~~"X increases Y"~~
+>- Writing a mystery novel  
+~~Holding out until page 4~~ $\rightsquigarrow$ Reader _always_ knows result
+>- Using the passive voice  
+~~"an analysis was conducted"~~ $\rightsquigarrow$ "we analyze"
+>- Getting the details wrong  
+~~"logistical regression"~~, ~~"the OLS model"~~  
+~~"the democrats and republicans"~~
+>- Referring to the person rather than paper  
+~~"He argues"~~ $\rightsquigarrow$ "@barker02 argues"
+
+
+# Resources
+
+## Resources
+
+There's a lot of good advice about writing academic papers. Heed it.
+
+\pause
+
+>- A template for writing a paper:
+>    - Compiled PDF: http://tinyurl.com/3sk8djrv
+>    - Quarto file: http://tinyurl.com/yeysumx4
+>    - (Bib file:) http://tinyurl.com/yucp32h4
+>- Some advice: https://www.ryantmoore.org/papers.html
+>- These notes:  
+https://github.com/ryantmoore/discussions/blob/main/994-2025-03-07_qualifier_probs.pdf
+
+***
+
+\centering
+
+\Large
+
+There are many potential pitfalls \ldots
+
+\vspace{5mm}
+
+![](figs/998_pitfall.png){width=70%}
+
+\vspace{5mm}
+
+\pause
+
+but you will write a great paper!
+
+## References {.allowframebreaks}
+
+\footnotesize
+

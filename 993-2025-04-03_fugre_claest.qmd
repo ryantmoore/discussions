@@ -1,0 +1,48 @@
+---
+title: | 
+    | Comments on Fu & Green, Clark & Estes
+author: "Ryan T. Moore"
+date: 2025-04-03
+date-format: iso
+format: 
+  beamer:
+    fonttheme: serif
+    section-titles: true
+    table-of-contents: true
+    include_in_header: 
+      - zzz_beamer_header.tex
+      - text: |
+          \usepackage{animate}
+institute: American University
+bibliography: "../setup/paper/main.bib"
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| results: false
+#| warning: false
+
+library(here)
+library(tidyverse)
+```
+
+# Fu & Green: _Latent Outcomes_
+
+## Fu & Green: _Latent Outcomes_
+
+@sumner24
+
+# Clark & Estes: _Combinatorial Counterfactuals_
+
+## Clark & Estes: _Combinatorial Counterfactuals_
+
+
+***
+
+
+## References {.allowframebreaks}
+
+\footnotesize
+

@@ -7,15 +7,20 @@ date-format: iso
 format: 
   beamer:
     fonttheme: serif
-    section-titles: true
-    table-of-contents: true
+    section-titles: false
+    table-of-contents: false
     include_in_header: 
-      - zzz_beamer_header.tex
       - text: |
           \usepackage{animate}
+          \usepackage{wasysym}
+          \setbeamertemplate{footline}[page number]
 institute: American University
 bibliography: "../setup/paper/main.bib"
 ---
+
+\newcommand{\expect}{\mathop{\mathbb{E}}}
+\newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
+
 
 ```{r}
 #| label: setup
@@ -32,12 +37,69 @@ library(tidyverse)
 
 ## Fu & Green: _Latent Outcomes_
 
-@sumner24
+\large
 
-# Clark & Estes: _Combinatorial Counterfactuals_
+>- Connections to many methods! (SEM, SUR, indices, stacked regression, GMM, MLE, GLS)
+>- Like "keeping interpretable scaling units", $\lambda_j$.  
+Return to this in application. What's $Y_1$?  
+Does choice affect interpretation? (No, ATE is on $\eta$?)
+>- Key: inverse-variance weighting $\omega_j$
+>- Practical trade-off/advice: more measures v. more observations (apply to eligibility?)
 
-## Clark & Estes: _Combinatorial Counterfactuals_
+>- Need uncorrelated $\epsilon_j$ measurement errors in $Y_j$, 
+but, "consistent under-reporters" or "over-centrists"?
+>- Need fundamental noise $\expect(\zeta_i) =0$?
+>- Practical concern (?): RI with SEM
 
+<!-- @sumner24 -->
+
+# Clark & Estes: _Counterfactual Complexity_
+
+## Clark & Estes: _Counterfactual Complexity_
+
+\large
+
+Connections to "long treatment histories":
+
+>- Dynamic treatment regimes  
+[@blackwell13]
+>- Synthetic controls lit (Like distance metric idea, p. 2?)  
+[@abagar03; @abadiahai10]
+>- Forecasting  
+[@girkin08]
+
+\pause 
+
+Connection to "sparse potential outcomes":
+
+>- Interference  
+[@rosenbaum07]
+
+## Clark & Estes: _Counterfactual Complexity_
+
+\large
+
+When would "max pre-divergence deviation" fail to bound?
+
+\pause 
+>- $T_{1,1-5} = \text{CCCCC}$
+>- $T_{2,1-5} = \text{CCCTT}$
+>- Why would $\max\limits_{t \in {1,2,3}} (Y_{2,t} - Y_{1,t})$ bound $Y_{2,5}-Y_{1,5}$?
+>- (In fact, _backwards_ from synthetic control RI!)
+
+\pause 
+
+Critical: choice of $C$ \pause 
+
+>- Constant? (What value?)
+>- Time-varying? (What function?)
+>- Difference-or-deviation (Shape matching)  
+
+\pause 
+Substantive motivation for choice?
+
+\pause 
+(Path figures helpful here!)
 
 ***
 

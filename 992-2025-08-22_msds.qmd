@@ -1,0 +1,220 @@
+---
+title: | 
+    | Welcome!
+    | MS in Data Science
+author: 
+  - name: Ryan T. Moore
+date: 2025-08-22
+date-format: iso
+execute: 
+  echo: true
+format: 
+  beamer:
+    fonttheme: serif
+    include-in-header: 
+      text: | 
+        \usepackage{wasysym}
+        \setbeamertemplate{footline}[page number]
+    section-titles: true
+    toc: false
+institute: 
+  - American University
+bibliography: "../setup/paper/main.bib"
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| results: false
+#| warning: false
+
+library(here)
+library(tidyverse)
+```
+
+***
+
+\LARGE
+
+>- Political methodologist  
+(Dept of Government, SPA)
+>- Assoc Director, Center for Data Science  
+(AU, SPA)
+>- Senior Social Scientist  
+(The Lab @ DC)
+>- Methods Fellow  
+(Office of Evaluation Sciences, US GSA)
+
+# Connections
+
+\LARGE
+
+>- Winter Institute in Data Science
+>- RAs with The Lab @ DC
+
+***
+
+\Huge
+
+\centering
+
+Data Science
+
+***
+
+\Huge
+Particular intersection of 
+
+- Statistical practice
+- Computational tools
+- Substantive knowledge
+
+
+***
+
+\LARGE
+
+>- Stats: prediction (vs. explanation), algorithms (vs. models)
+>- Computing: addressing problems with data _per se_ (size, tidy-ness, un/structure, replicability)
+>- Substance: social science
+
+# Three Tasks of Data Science
+
+\Large 
+
+>- Description
+>- Prediction
+>- Causal Inference
+
+\pause 
+\vspace{1mm}
+
+Models/algorithms central to all three.
+
+\pause 
+\vspace{1mm}
+
+@herhsuhea19
+
+# Three Tasks of Data Science
+
+\Large 
+
+Description
+
+>- Identifying patterns, etc.
+>- E.g., $k$-means clustering to discover groups
+
+# Three Tasks of Data Science
+
+\Large 
+
+Prediction
+
+>- Components
+>    - Inputs/outputs  
+(predictors/outcomes, features/responses, \ldots)
+>    - Mapping from inputs to outputs  
+(linear model, decision tree, \ldots)
+>    - Metric for evaluating mapping
+>- With these, model/machine learning algorithm does the work
+>- E.g., regression, random forests, neural networks, \ldots
+
+# Three Tasks of Data Science
+
+\large
+
+Causal Inference
+
+>- Potential outcomes/counterfactual/interventionist perspective
+>- Requires _expertise_ different to description/prediction
+>- Requires more than summary statistics, metrics, etc.
+>- Requires some knowledge of causal structure
+>    - Not all inputs treated same
+>    - $T$ v. $\mathbf X$ v. $M$ -- very different!
+>    - (the more knowledge, the better!)
+>- E.g., experiments, observational causal designs, \ldots
+
+# Goals
+
+\Large
+
+- Computational tools (R, Python, etc.)
+- Varied data experience, original work
+- Apply knowledge in academia, government, industry
+- Communicate understanding
+
+# Requirements
+
+\Large
+
+>- 10 courses / 30 credits
+>- Choose a track: **Applied Public Affairs**, Business Analytics, Computer Sci, Cybersecurity, 
+Environmental Sci, Finance, Int'l Economic Relations, Investigative Journalism, Microeconomic Analysis, Specialized Methods
+>- Catalog ('25-'26): https://t.ly/Ib43y  
+\footnotesize https://catalog.american.edu/preview_program.php?catoid=21&poid=10388
+
+# Courses
+
+\large
+
+- DATA-612: R
+- DATA-613: Data Science (modeling, Shiny, etc.)
+- STAT-615: Regression
+- STAT-627: Stat Machine Learning
+- One of
+  - GOVT/STAT-618: Bayes
+  - GOVT-650: Political Analysis
+- One of
+  - GOVT-653: Intro Quant Methods in Pol Sci
+  - STAT-614: Stat Methods
+- DATA-793: Capstone
+  - (The Lab @ DC DHS connections \ldots)
+- Three more courses
+  - (Electives, depend on track)
+  - Substance or methods (computer vision, AI, ML, deep learning, 
+  NLP, survey sampling, \ldots)
+
+<!-- ![](figs/997_simTEs.pdf){fig-align="center"} -->
+
+<!-- \includegraphics[width=2in]{figs/997_repPerryBalQQarrestsAll.pdf} -->
+
+
+# Directors
+
+\Large
+
+- Jeff Gill: `jeffgill.org`
+- Betty Malloy: `malloy@american.edu`
+
+
+
+***
+
+\huge
+
+\begin{center}
+Questions?
+\end{center}
+
+***
+
+\huge
+
+\begin{center}
+Thanks! 
+\end{center}
+
+\vspace{5mm}
+
+\large
+
+\center 
+
+`rtm@american.edu`  
+`www.ryantmoore.org`  
+
+\quad
+
+# References

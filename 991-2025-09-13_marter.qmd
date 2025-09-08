@@ -1,0 +1,49 @@
+---
+title: | 
+    | Comments on Marquardt & Tertytchnaya, 
+    | "Sensitive questions and mode of survey administration in autocracies: Evidence from Russia"
+author: "Ryan T. Moore"
+date: 2025-09-13
+date-format: iso
+format: 
+  beamer:
+    fonttheme: serif
+    section-titles: false
+    table-of-contents: false
+    include_in_header: 
+      - text: |
+          \usepackage{animate}
+          \usepackage{wasysym}
+          \setbeamertemplate{footline}[page number]
+institute: American University
+bibliography: "../setup/paper/main.bib"
+---
+
+\newcommand{\expect}{\mathop{\mathbb{E}}}
+\newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
+
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| results: false
+#| warning: false
+
+library(here)
+library(tidyverse)
+```
+
+# Marquardt & Tertytchnaya: _Sensitive Questions, Mode_
+
+## Marquardt & Tertytchnaya: _Sensitive Questions, Mode_
+
+\large
+
+***
+
+
+## References {.allowframebreaks}
+
+\footnotesize
+

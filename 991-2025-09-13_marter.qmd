@@ -13,6 +13,7 @@ format:
     include_in_header: 
       - text: |
           \usepackage{animate}
+          \usepackage{natbib}
           \usepackage{wasysym}
           \setbeamertemplate{footline}[page number]
 institute: American University
@@ -30,7 +31,9 @@ bibliography: "../setup/paper/main.bib"
 #| results: false
 #| warning: false
 
+library(grid)
 library(here)
+library(png)
 library(tidyverse)
 ```
 
@@ -39,8 +42,109 @@ library(tidyverse)
 ## Marquardt & Tertytchnaya: _Sensitive Questions, Mode_
 
 \large
+Sensitive questions \newline \pause 
+\quad $\rightsquigarrow$ how R's report? \newline \pause 
+\quad $\rightsquigarrow$ social desirability bias
+\pause 
+
+_Social desirability bias_ in surveys:
+\pause 
+
+$$S(x) = Pr(Z_{i, J+1}(0) = 1 | X_i = x) - Pr(Z^*_{i, J+1} = 1 | X_i = x)$$
+
+\pause 
+
+(First term: shown control, then asked _directly_)
+
+[@blaima12]
 
 ***
+
+\large
+The difference between list estimate and direct question:
+
+```{r echo=FALSE}
+img <- readPNG("../ci-exp-essex-2025/notes/figs/05-list-race-socbias.png")
+grid.raster(img)
+```
+
+***
+
+\Large
+
+But, Marquardt & Tertytchnaya highlights that there may be 
+
+* $S_{\text{face-to-face}}(x)$
+* $S_{\text{online}}(x)$
+
+\pause 
+
+And also, 
+
+* differences in lists  
+    (face-to-face v. online)
+* differences in direct questions  
+    (face-to-face v. online)
+
+\pause 
+Marquardt & Tertytchnaya looks at all of these potential differences!
+
+## Some Issues
+
+\large
+
+>- Sampling
+>    - Frames? Estimands?
+>    - Age!
+>- Different responses to modes -- reasons other than privacy/anonymity? 
+>- Privacy/anonymity
+>- Multiple comparisons?
+>- Timing (p. 19)
+>    - What happens in these months?
+>    - All pre-/post-US election or transition?
+>    - Different true levels of support in Nov/Jan?  
+>- Are people shown several experiments?  
+(p. 24 tables)
+>- The non-privacy of lists  
+(floors and ceilings, Table 11)
+
+## Solutions
+
+\large 
+
+>- How to get around sampling/participation differences?
+
+\pause 
+
+Experiment: Recruit partcipants willing to do _either_ face-to-face or online, then randomise to mode.
+
+\pause 
+
+All statements about the "effect" of mode assume this?
+\pause 
+
+![](figs/991-marter-table.png){fig-align="center" height=35%}
+
+\pause 
+
+>- Region intercepts, not "effects"
+
+## Opportunities
+
+\large
+
+>- Appreciate this paper's directness, but a little more intro of _why_ we should expect what we see
+>- Examine risk measurement
+>    - Post-treatment? Prime?
+>    - A footnote:
+
+\pause 
+
+![A Concern.](figs/991-marter-fn.png)
+\pause 
+
+>- Value in checking interpretations qualitatively, via elaborations?
+>- Formalise "deflation", à la _social desirability bias_" (about 6%?)
 
 
 ## References {.allowframebreaks}
